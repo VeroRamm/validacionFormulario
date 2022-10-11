@@ -60,7 +60,15 @@ export function valida(input) {
   const validadores = {
     nacimiento: (input) => validarNacimiento(input),
   };
-  
+  function mostrarMensajeDeError(tipoDeInput, input){
+    let mensaje = "";
+    tipoDeErrores.forEach((error)=>{
+        if (input.validity[error]){
+            mensaje = mensajesDeError[tipoDeInput][error]
+        }
+    });
+    return mensaje;
+}
 
 function validarNacimiento(input){
     const fechaCliente =new Date(input.value);
